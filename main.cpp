@@ -11,6 +11,7 @@
  -----------------------------------------------------------------------------------
 */
 
+#include <cstdlib>
 #include "joueur.h"
 #include "carte.h"
 #include "partie.h"

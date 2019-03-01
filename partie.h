@@ -10,7 +10,7 @@
  Compilateur : MinGW-g++
  -----------------------------------------------------------------------------------
 */
-#ifndef
+#ifndef PARTIE
 #define PARTIE
 
 class Partie{

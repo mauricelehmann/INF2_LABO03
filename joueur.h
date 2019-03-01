@@ -10,14 +10,17 @@
  Compilateur : MinGW-g++
  -----------------------------------------------------------------------------------
 */
-#ifndefine
+#ifndef JOUEUR
 #define JOUEUR
 #include <vector>
+#include "carte.h"
 
 class Joueur{
 public:
-
+   //Constructeur //TODO
+   Joueur(){}
+   std::vector<Carte> famillesSurTable;
 private:
-
+   std::vector<Carte> cartesEnMain;
 };
 #endif //JOUEUR

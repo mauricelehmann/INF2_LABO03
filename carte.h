@@ -10,13 +10,16 @@
  Compilateur : MinGW-g++
  -----------------------------------------------------------------------------------
 */
-#ifndef
+#ifndef CARTE
 #define CARTE
 
 class Carte{
 public:
-
+   //Constructeur
+   Carte(const unsigned short& famille, const unsigned short& membre)
+   :famille(famille),membre(membre){}
 private:
-
+   unsigned short famille;
+   unsigned short membre; //Ou char , à choix...
 };
 #endif //CARTE
