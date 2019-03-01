@@ -1,7 +1,7 @@
 /*
  -----------------------------------------------------------------------------------
  Laboratoire : 03
- Fichier     : main.cpp
+ Fichier     : carte.h
  Auteur(s)   : Maurice Lehmann,Farouk Ferchichi,Florian, Florian Schaufelberger
  Date        : 01.03.2019
 
@@ -10,15 +10,13 @@
  Compilateur : MinGW-g++
  -----------------------------------------------------------------------------------
 */
+#ifndef
+#define CARTE
 
-#include "joueur.h"
-#include "carte.h"
-#include "partie.h"
+class Carte{
+public:
 
-using namespace std;
+private:
 
-int main(){
-
-
-    return EXIT_SUCCESS;
-}
+};
+#endif //CARTE
