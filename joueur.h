@@ -13,14 +13,20 @@
 #ifndef JOUEUR
 #define JOUEUR
 #include <vector>
+#include <string>
 #include "carte.h"
 
 class Joueur{
 public:
    //Constructeur //TODO
    Joueur(){}
-   std::vector<Carte> famillesSurTable;
+   void piocher();
+   void demanderCarte();
+   void detecterFamille();
 private:
+   std::string nom;
    std::vector<Carte> cartesEnMain;
+   std::vector<Carte> famillesSurTable;
+   unsigned int points;
 };
 #endif //JOUEUR

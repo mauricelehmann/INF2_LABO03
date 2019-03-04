@@ -12,12 +12,19 @@
 */
 #ifndef PARTIE
 #define PARTIE
-
+#include "joueur.h"
 class Partie{
+    friend class Joueur;
 public:
-
+    void tour();
+    void initialiserPartie();
+    void distribuerCartes();
+    bool detecterFinDePartie();
+    void reinitialiserPartie();
 private:
-
+    std::vector<Carte> pioche;
+    std::vector<Joueur> joueurs;
+    unsigned int nombreDeTours;
 };
 
 #endif //PARTIE

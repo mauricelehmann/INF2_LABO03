@@ -16,10 +16,9 @@
 class Carte{
 public:
    //Constructeur
-   Carte(const unsigned short& famille, const unsigned short& membre)
-   :famille(famille),membre(membre){}
+   Carte(const unsigned short& famille, const char& membre);
 private:
    unsigned short famille;
-   unsigned short membre; //Ou char , à choix...
+   char membre;
 };
 #endif //CARTE

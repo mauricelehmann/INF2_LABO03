@@ -11,3 +11,6 @@
  -----------------------------------------------------------------------------------
 */
 #include "carte.h"
+
+Carte::Carte(const unsigned short& famille, const char& membre)
+:famille(famille),membre(membre){}
