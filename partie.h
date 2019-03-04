@@ -16,12 +16,11 @@
 class Partie{
     friend class Joueur;
 public:
-    Partie();
-    void tour();
-    void initialiserPartie();
-    void distribuerCartes();
-    bool detecterFinDePartie();
-    void reinitialiserPartie();
+    Partie(); //Florian
+    void tour(); //Florian
+    void initialiserPartie(); //Florian
+    void distribuerCartes(); //Farouk
+    bool detecterFinDePartie(); //Farouk
 private:
     std::vector<Carte> pioche;
     std::vector<Joueur> joueurs;
