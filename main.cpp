@@ -2,7 +2,7 @@
  -----------------------------------------------------------------------------------
  Laboratoire : 03
  Fichier     : main.cpp
- Auteur(s)   : Maurice Lehmann,Farouk Ferchichi, Florian Schaufelberger
+ Auteur(s)   : Maurice Lehmann,Ahmed Farouk Ferchichi, Florian Schaufelberger
  Date        : 01.03.2019
 
  But         : TODO

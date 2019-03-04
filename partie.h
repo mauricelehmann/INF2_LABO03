@@ -2,7 +2,7 @@
  -----------------------------------------------------------------------------------
  Laboratoire : 03
  Fichier     : partie.h
- Auteur(s)   : Maurice Lehmann,Farouk Ferchichi, Florian Schaufelberger
+ Auteur(s)   : Maurice Lehmann,Ahmed Farouk Ferchichi, Florian Schaufelberger
  Date        : 01.03.2019
 
  But         : TODO
@@ -16,6 +16,7 @@
 class Partie{
     friend class Joueur;
 public:
+    Partie();
     void tour();
     void initialiserPartie();
     void distribuerCartes();

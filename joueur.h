@@ -2,7 +2,7 @@
  -----------------------------------------------------------------------------------
  Laboratoire : 03
  Fichier     : joueur.h
- Auteur(s)   : Maurice Lehmann,Farouk Ferchichi, Florian Schaufelberger
+ Auteur(s)   : Maurice Lehmann,Ahmed Farouk Ferchichi, Florian Schaufelberger
  Date        : 01.03.2019
 
  But         : TODO
@@ -19,7 +19,7 @@
 class Joueur{
 public:
    //Constructeur //TODO
-   Joueur(){}
+   Joueur();
    void piocher();
    void demanderCarte();
    void detecterFamille();
