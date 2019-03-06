@@ -12,6 +12,7 @@
 */
 #ifndef CARTE
 #define CARTE
+#include <iostream>
 
 class Carte{
 public:
@@ -19,6 +20,7 @@ public:
    Carte(const unsigned short& famille, const char& membre);
    unsigned short getFamille();
    char getMembre();
+   void afficherCarte();
 private:
    unsigned short famille;
    char membre;
