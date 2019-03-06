@@ -11,6 +11,7 @@
  -----------------------------------------------------------------------------------
 */
 #include "joueur.h"
+<<<<<<< HEAD
 using namespace std;
 
 Joueur::Joueur(const string& nom):nom(nom){
@@ -40,3 +41,5 @@ void Joueur::afficherMain(){
       carte.afficherCarte();
    }
 }
+=======
+>>>>>>> ec795d5592c3f800bb7a8c94c5f621aaa3fff402
