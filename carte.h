@@ -13,10 +13,15 @@
 #ifndef CARTE
 #define CARTE
 
+#include <iostream>
+
 class Carte{
 public:
    //Constructeur
    Carte(const unsigned short& famille, const char& membre);
+   void afficherCarte();
+   unsigned short getFamille();
+   char getMembre();
 private:
    unsigned short famille;
    char membre;

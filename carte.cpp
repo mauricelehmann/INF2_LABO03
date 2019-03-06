@@ -11,6 +11,17 @@
  -----------------------------------------------------------------------------------
 */
 #include "carte.h"
+using namespace std;
 
 Carte::Carte(const unsigned short& famille, const char& membre)
 :famille(famille),membre(membre){}
+
+void Carte::afficherCarte(){
+   cout << famille << membre << " ";
+}
+unsigned short Carte::getFamille(){
+   return famille;
+}
+char Carte::getMembre(){
+   return membre;
+}

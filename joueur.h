@@ -14,15 +14,18 @@
 #define JOUEUR
 #include <vector>
 #include <string>
+#include "constantesGlobales.h"
 #include "carte.h"
 
 class Joueur{
 public:
-   //Constructeur //TODO
-   Joueur();
-   void piocher();
+   //Constructeur
+   Joueur(const std::string& nom);
+   void piocher(std::vector<Carte>& pioche);
    void demanderCarte();
    void detecterFamille();
+   void ajouterCarte(const Carte& carte);
+   void afficherMain();
 private:
    std::string nom;
    std::vector<Carte> cartesEnMain;
