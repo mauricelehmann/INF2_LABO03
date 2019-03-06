@@ -14,3 +14,11 @@
 
 Carte::Carte(const unsigned short& famille, const char& membre)
 :famille(famille),membre(membre){}
+
+//Getter
+unsigned short Carte::getFamille(){
+    return famille;
+}
+char Carte::getMembre(){
+    return membre;
+}

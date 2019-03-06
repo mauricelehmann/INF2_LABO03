@@ -17,6 +17,8 @@ class Carte{
 public:
    //Constructeur
    Carte(const unsigned short& famille, const char& membre);
+   unsigned short getFamille();
+   char getMembre();
 private:
    unsigned short famille;
    char membre;
