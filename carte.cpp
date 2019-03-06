@@ -24,5 +24,5 @@ char Carte::getMembre(){
     return membre;
 }
 void Carte::afficherCarte(){
-    cout << famille << membre;
+    cout << famille << membre << " ";
 }

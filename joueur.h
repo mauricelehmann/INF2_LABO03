@@ -25,7 +25,8 @@ public:
    void demanderCarte();
    void detecterFamille();
    void ajouterCarte(const Carte& carte);
-   void afficherMain();
+   void afficherMain() const;
+   void afficherFamillesSurTable() const;
 private:
    std::string nom;
    std::vector<Carte> cartesEnMain;
