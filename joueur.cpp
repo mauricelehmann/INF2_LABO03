@@ -14,7 +14,8 @@
 using namespace std;
 
 Joueur::Joueur(const string& nom):nom(nom){
-   
+    //On initialise les points à zéro
+    points = 0;
 }
 void Joueur::piocher(vector<Carte>& pioche){
    //On met la dernière carte de la pioche dans la main du joueur
@@ -23,12 +24,12 @@ void Joueur::piocher(vector<Carte>& pioche){
    pioche.pop_back();
 }
 void Joueur::demanderCarte(){
-   
+
 }
 void Joueur::detecterFamille(){
    size_t compteur = 0;
    for(Carte carte : cartesEnMain ){
-      
+       
    }
 }
 void Joueur::ajouterCarte(const Carte& carte){
