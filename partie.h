@@ -22,7 +22,7 @@ public:
     void distribuerCartes(); //Farouk
     bool detecterFinDePartie(); //Farouk
 private:
-    std::vector<Carte> pioche = {Carte(1,'A'),Carte(1,'B'),};
+    std::vector<Carte> pioche;
     std::vector<Joueur> joueurs;
     unsigned int nombreDeTours;
 };
