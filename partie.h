@@ -21,6 +21,11 @@ public:
     void initialiserPartie(); //Florian
     void distribuerCartes(); //Farouk
     bool detecterFinDePartie(); //Farouk
+
+    //Methode d'affichage
+    void afficherPioche() const ;
+    void afficherCartesJoueurs() const ;
+
 private:
     std::vector<Carte> pioche;
     std::vector<Joueur> joueurs;

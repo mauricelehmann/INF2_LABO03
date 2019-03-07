@@ -11,3 +11,20 @@
  -----------------------------------------------------------------------------------
 */
 #include "partie.h"
+
+
+void Partie::afficherPioche() const {
+    cout << "Pioche: ";
+    for(Carte carte : pioche ){
+        carte.afficherCarte();
+    }
+}
+void Partie::afficherCartesJoueurs() const {
+    for(Joueur joueur : joueurs){
+        cout << joueur.nom << " : ";
+        joueur.afficherMain();
+        cout << " [";
+        joueur.afficherFamillesSurTable();
+        cout << "]";
+    }
+}
