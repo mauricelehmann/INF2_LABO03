@@ -19,13 +19,37 @@
 
 class Joueur{
 public:
-   //Constructeur
+   /**
+    * Constructeur de class Joueur
+    * @param nom nom du joueur
+    */
    Joueur(const std::string& nom);
+   /**
+    * Ajoute une carte dans la main du joueur, venant de la pioche
+    * @param pioche vecteur de carte
+    */
    void piocher(std::vector<Carte>& pioche);
+   /**
+    * Demande une carte à un autre joueur
+    */
    void demanderCarte();
+   /**
+    * Detecte si le joueur à une famille complète dans la main
+    * Si oui, on transfère les cartes de la main à la table
+    */
    void detecterFamille();
+   /**
+    * Ajoute une carte dans la main du joueur
+    * @param carte Carte à ajouter
+    */
    void ajouterCarte(const Carte& carte);
+   /**
+    * Affiche la main du joueur
+    */
    void afficherMain() const;
+   /**
+    * Affiche les familles sur table
+    */
    void afficherFamillesSurTable() const;
 private:
    std::string nom;

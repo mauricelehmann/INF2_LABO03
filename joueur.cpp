@@ -29,7 +29,7 @@ void Joueur::piocher(vector<Carte>& pioche){
 
 
 void Joueur::demanderCarte(){
-
+    
 }
 
 
