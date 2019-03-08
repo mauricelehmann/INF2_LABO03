@@ -13,6 +13,7 @@
 #ifndef PARTIE
 #define PARTIE
 #include "joueur.h"
+
 class Partie{
     friend class Joueur;
 public:

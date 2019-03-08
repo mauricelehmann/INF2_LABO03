@@ -10,9 +10,39 @@
  Compilateur : MinGW-g++
  -----------------------------------------------------------------------------------
 */
+#include <iostream>
+
 #include "partie.h"
+#include "joueur.h"
+#include "constantesGlobales.h"
 
 using namespace std;
+
+
+using namespace std;
+Partie::Partie() {
+	for(int i = 1; i <= NOMBRE_FAMILLES; ++i ) {
+		for(int j = 'A'; j <= CARTES_PAR_FAMILLES; ++j ){
+			pioche.push_back(Carte(i, j));
+		}
+	}
+}
+
+void Partie::tour() {
+	for(int i = 0; i < NOMBRE_JOUEURS; ++i) {
+		do{
+			joueurs[i].demanderCarte();
+		}
+		while(joueurs[i].demanderCarte());
+
+		if(pioche.size() != 0) {
+			joueurs[i].piocher(pioche);
+		}
+
+		joueurs[i].detecterFamille();
+
+	}
+}
 
 void Partie::afficherPioche() const {
     cout << "Pioche: ";
