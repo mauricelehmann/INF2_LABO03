@@ -35,14 +35,15 @@ void Joueur::piocher(vector<Carte>& pioche){
 
 bool Joueur::demanderCarte(){
 
-  vector<Carte> carteADemander;
-	for(int i = 0; i < cartesEnMain.size(); ++i) {
-    for(char j = 'A'; j < CARTES_PAR_FAMILLES; ++j){
-      if(cartesEnMain[i].getFamille()){
-        carteADemander.push_back(cartesEnMain[i].getFamille(), j);
-      }
-    }
-  }
+  // vector<Carte> carteADemander;
+	// for(size_t i = 0; i < cartesEnMain.size(); ++i) {
+  //   for(char j = 'A'; j < CARTES_PAR_FAMILLES; ++j){
+  //     if(cartesEnMain[i].getFamille()){
+  //       carteADemander.push_back(cartesEnMain[i].getFamille());
+  //     }
+  //   }
+  // }
+  return 0;
 }
 
 
