@@ -26,6 +26,7 @@ int main(){
 
     //Initialiser class Partie : avec n joueurs
     //Partie Partie1( [joueur1,joueur2,joueur3], nombreDeFamille, nombreDeMembre)
+    Partie();
     
     return EXIT_SUCCESS;
 }

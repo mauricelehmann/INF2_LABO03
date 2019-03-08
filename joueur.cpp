@@ -10,9 +10,14 @@
  Compilateur : MinGW-g++
  -----------------------------------------------------------------------------------
 */
-#include "joueur.h"
+
 #include <iostream>
+#include <vector>
+#include <string>
+#include "joueur.h"
 using namespace std;
+
+Joueur::Joueur() {}
 
 Joueur::Joueur(const string& nom):nom(nom){
     //On initialise les points à zéro
@@ -28,8 +33,16 @@ void Joueur::piocher(vector<Carte>& pioche){
 }
 
 
-void Joueur::demanderCarte(){
-    
+bool Joueur::demanderCarte(){
+
+  vector<Carte> carteADemander;
+	for(int i = 0; i < cartesEnMain.size(); ++i) {
+    for(char j = 'A'; j < CARTES_PAR_FAMILLES; ++j){
+      if(cartesEnMain[i].getFamille()){
+        carteADemander.push_back(cartesEnMain[i].getFamille(), j);
+      }
+    }
+  }
 }
 
 
@@ -85,4 +98,8 @@ void Joueur::afficherFamillesSurTable() const{
     for(Carte carte : famillesSurTable ){
        carte.afficherCarte();
     }
+}
+
+string Joueur::getNom() {
+  return nom;
 }

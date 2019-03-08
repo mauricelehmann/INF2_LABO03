@@ -19,6 +19,8 @@
 
 class Joueur{
 public:
+
+   Joueur();
    /**
     * Constructeur de class Joueur
     * @param nom nom du joueur
@@ -29,14 +31,13 @@ public:
     * @param pioche vecteur de carte
     */
    void piocher(std::vector<Carte>& pioche);
-   /**
-    * Demande une carte à un autre joueur
-    */
-   void demanderCarte();
+
    /**
     * Detecte si le joueur à une famille complète dans la main
     * Si oui, on transfère les cartes de la main à la table
     */
+   bool demanderCarte();
+
    void detecterFamille();
    /**
     * Ajoute une carte dans la main du joueur
@@ -51,6 +52,8 @@ public:
     * Affiche les familles sur table
     */
    void afficherFamillesSurTable() const;
+
+   std::string getNom();
 private:
    std::string nom;
    std::vector<Carte> cartesEnMain;
