@@ -19,6 +19,7 @@
 #include "carte.h"
 
 class Joueur{
+    friend class Partie;
 public:
 
    Joueur();
@@ -37,8 +38,6 @@ public:
     * Detecte si le joueur à une famille complète dans la main
     * Si oui, on transfère les cartes de la main à la table
     */
-   bool demanderCarte();
-
    void detecterFamille();
    /**
     * Ajoute une carte dans la main du joueur
@@ -54,7 +53,12 @@ public:
     */
    void afficherFamillesSurTable() const;
 
+   void donnerCarte(int carte);
+
+   void recevoirCarte(Carte carte);
    std::string getNom();
+
+   std::vector<Carte> getCartesEnMain();
 private:
    std::string nom;
    std::vector<Carte> cartesEnMain;

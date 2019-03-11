@@ -14,6 +14,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <cstdlib>
 #include "joueur.h"
 using namespace std;
 
@@ -24,28 +25,12 @@ Joueur::Joueur(const string& nom):nom(nom){
     points = 0;
 }
 
-
 void Joueur::piocher(vector<Carte>& pioche){
    //On met la dernière carte de la pioche dans la main du joueur
    cartesEnMain.push_back(pioche.at(pioche.size() - 1));
    //On enlève la carte de la pioche
    pioche.pop_back();
 }
-
-
-bool Joueur::demanderCarte(){
-
-  // vector<Carte> carteADemander;
-	// for(size_t i = 0; i < cartesEnMain.size(); ++i) {
-  //   for(char j = 'A'; j < CARTES_PAR_FAMILLES; ++j){
-  //     if(cartesEnMain[i].getFamille()){
-  //       carteADemander.push_back(cartesEnMain[i].getFamille());
-  //     }
-  //   }
-  // }
-  return 0;
-}
-
 
 void Joueur::detecterFamille(){
     //On cherche les différentes familles dans la main
@@ -104,3 +89,18 @@ void Joueur::afficherFamillesSurTable() const{
 string Joueur::getNom() {
   return nom;
 }
+
+vector<Carte> Joueur::getCartesEnMain() {
+  return cartesEnMain;
+}
+
+void Joueur::donnerCarte(int carte) {
+  cartesEnMain.erase(cartesEnMain.begin() + carte);
+}
+
+void Joueur::recevoirCarte(Carte carte) {
+  cartesEnMain.push_back(carte);
+}
+
+
+

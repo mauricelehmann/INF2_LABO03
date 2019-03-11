@@ -15,9 +15,11 @@
 #include <iostream>
 
 class Carte{
+
 public:
    //Constructeur
    Carte(const unsigned short& famille, const char& membre);
+   bool operator == (const Carte&);
    unsigned short getFamille();
    char getMembre();
    void afficherCarte();
