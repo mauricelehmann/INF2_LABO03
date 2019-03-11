@@ -20,7 +20,7 @@ public:
     Partie(); //Florian
     void tour(); //Florian
     void initialiserPartie(); //Florian
-    void distribuerCartes(); //Farouk
+    void distribuerCartes(); //Farouk bonjour
     bool detecterFinDePartie(); //Farouk
 
     //Methode d'affichage
