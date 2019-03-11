@@ -18,10 +18,9 @@
 
 using namespace std;
 
-
-using namespace std;
 Partie::Partie() {
-	for(int i = 1; i <= NOMBRE_FAMILLES; ++i ) {
+    //On crée & initialise la pioche
+	for(unsigned i = 1; i <= NOMBRE_FAMILLES; ++i ) {
 		for(int j = 'A'; j <= CARTES_PAR_FAMILLES; ++j ){
 			pioche.push_back(Carte(i, j));
 		}
@@ -36,7 +35,6 @@ void Partie::tour() {
 		while(j == i) {
 			j = rand() % NOMBRE_JOUEURS - 1;
 		}
-
 		do{
 			found = demanderCarte(joueurs[i], joueurs[j]);
 		}
@@ -94,4 +92,18 @@ bool Partie::demanderCarte(Joueur j1, Joueur j2){
   	}
   }
   return false;
+}
+
+void Partie::distribuerCartes(){
+    // on rajoute un élément à la fin du vecteur pour que "shuffle"
+    pioche.push_back(Carte(0,'F'));
+    unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+    // on mélange les cartes
+    shuffle (pioche.begin(), pioche.end(), default_random_engine(seed));
+    //on enléve le dérnier élément
+    pioche.pop_back();
+    for(size_t i = 0; i < CARTES_PAR_JOUEURS*NOMBRE_JOUEURS; i++) {
+        joueurs.at(i%NOMBRE_JOUEURS).cartesEnMain.push_back(pioche.at(i));
+    }
+
 }

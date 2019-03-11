@@ -19,6 +19,7 @@
 #include "carte.h"
 
 class Joueur{
+    friend class Partie;
 public:
 
    Joueur();
