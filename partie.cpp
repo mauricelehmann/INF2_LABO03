@@ -31,7 +31,7 @@ Partie::Partie() {
     }
 }
 
-void Partie::tour() {
+bool Partie::tour() {
 	srand(time(NULL));
 	int j;
 	bool found;
@@ -49,8 +49,7 @@ void Partie::tour() {
 		}
 
 		joueurs[i].detecterFamille();
-
-	}
+	}	
 }
 
 void Partie::afficherPioche() const {
@@ -90,13 +89,21 @@ bool Partie::demanderCarte(Joueur j1, Joueur j2){
 
   int randomCarte = rand() % carteADemander.size();
 
+
+  cout << j1.getNom() << " demande à " << j2.getNom() << "la carte ";
+  carteADemander[randomCarte].afficherCarte();
+  cout << endl;
+
   for(int i = 0; i < cartesEnMainJ2.size(); ++i) {
   	if(cartesEnMainJ2[i] == carteADemander[randomCarte]) {
   		j2.donnerCarte(i);
   		j1.recevoirCarte(carteADemander[randomCarte]);
+  		cout << "et " << j2.getNom() << " donne la carte à " << j1.getNom() << endl;
   		return true;
   	}
   }
+
+  cout << "mais " << j2.getNom() << " ne l'a pas" << endl;
   return false;
 }
 
@@ -112,4 +119,8 @@ void Partie::distribuerCartes(){
         joueurs.at(i%NOMBRE_JOUEURS).cartesEnMain.push_back(pioche.at(i));
     }
 
+}
+
+vector<Joueur> Partie::getJoueurs() {
+	return joueurs;
 }

@@ -22,7 +22,7 @@ class Partie{
     friend class Joueur;
 public:
     Partie(); //Florian
-    void tour(); //Florian
+    bool tour(); //Florian
     void initialiserPartie(); //Florian
     void distribuerCartes(); //Farouk bonjour
     bool detecterFinDePartie(); //Farouk
@@ -32,6 +32,7 @@ public:
     //Methode d'affichage
     void afficherPioche() const ;
     void afficherCartesJoueurs() const ;
+    std::vector<Joueur> getJoueurs();
 
 private:
     std::vector<Carte> pioche;
