@@ -18,9 +18,8 @@
 
 using namespace std;
 
-
-using namespace std;
 Partie::Partie() {
+    //On crée & initialise la pioche
 	for(int i = 1; i <= NOMBRE_FAMILLES; ++i ) {
 		for(int j = 'A'; j <= CARTES_PAR_FAMILLES; ++j ){
 			pioche.push_back(Carte(i, j));
@@ -34,7 +33,7 @@ void Partie::tour() {
 			joueurs[i].demanderCarte();
 		}
 		while(joueurs[i].demanderCarte());
-
+        
 		if(pioche.size() != 0) {
 			joueurs[i].piocher(pioche);
 		}
@@ -58,4 +57,17 @@ void Partie::afficherCartesJoueurs() const {
         joueur.afficherFamillesSurTable();
         cout << "]";
     }
+}
+
+void Partie::distribuerCartes(){
+    // on rajoute un élément à la fin du vecteur pour que "shuffle"
+    pioche.push_back(0);
+    // on mélange les cartes
+    shuffle (pioche.begin(), pioche.end(), std::default_random_engine(seed));
+    //on enléve le dérnier élément
+    pioche.pop_back();
+    for(size_t i = 0; i < CARTES_PAR_JOUEURS*NOMBRE_JOUEURS; i++) {
+        joueurs.at(i%NOMBRE_JOUEURS).cartesEnMain.push_back(pioche.at(i);
+    }
+
 }
