@@ -13,6 +13,10 @@
 #ifndef PARTIE
 #define PARTIE
 #include "joueur.h"
+#include <algorithm>
+#include <random>
+#include <vector>
+#include <chrono>
 
 class Partie{
     friend class Joueur;
