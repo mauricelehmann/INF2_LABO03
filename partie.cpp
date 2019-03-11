@@ -19,23 +19,23 @@
 using namespace std;
 
 Partie::Partie() {
-    //On crée & initialise la pioche
-	initPioche();
     //On crée les 4 joueurs
     for(unsigned j = 0 ; j < NOMBRE_JOUEURS ; j++){
         joueurs.push_back(Joueur(NOMS_JOUEURS[j]));
     }
 }
 void Partie::initialiserPartie(){
-
     //On enleve les cartes des mains des joueurs
     for(Joueur& j : joueurs ){
         j.cartesEnMain.clear();
+
+	    //On enleve les cartes sur la table
         j.famillesSurTable.clear();
-        j.afficherMain();
     }
-    //On enleve les cartes sur la table
+    //On crée & initialise la pioche
     initPioche();
+
+    distribuerCartes();
 }
 
 void Partie::initPioche(){
@@ -43,22 +43,43 @@ void Partie::initPioche(){
         pioche.clear();
     }
     for(unsigned i = 1; i <= NOMBRE_FAMILLES; ++i ) {
-		for(int j = 'A'; j <= CARTES_PAR_FAMILLES; ++j ){
+		for(unsigned short j = 'A'; j <= CARTES_PAR_FAMILLES; ++j ){
 			pioche.push_back(Carte(i, j));
 		}
 	}
 }
 
-bool Partie::tour() {
-	srand(time(NULL));
-	int j;
+void Partie::afficherDebutTour() {
+	for(unsigned i = 0; i  < NOMBRE_JOUEURS; ++i) {
+		cout << joueurs[i].getNom() << " : ";
+		joueurs[i].afficherMain();
+		cout << endl;
+	}
+	afficherPioche();
+	cout << endl;
+}
+
+void Partie::tour() {
+
+	srand(time(nullptr));
+	int test = NOMBRE_JOUEURS - 1;
+	int j = rand() % test;
 	bool found;
+	vector<Joueur> joueurDisponible;
+	afficherDebutTour();
+
 	for(int i = 0; i < NOMBRE_JOUEURS; ++i) {
-		while(j == i) {
-			j = rand() % NOMBRE_JOUEURS - 1;
+		if(joueurs[i].getCartesEnMain().size() != 0) {
+			joueurDisponible.push_back(joueurs[i]);
 		}
+
+		while(j == i) {
+			j = rand() % test;
+		}
+
 		do{
 			found = demanderCarte(joueurs[i], joueurs[j]);
+
 		}
 		while(found);
 
@@ -91,6 +112,7 @@ void Partie::afficherCartesJoueurs() const {
 }
 
 bool Partie::demanderCarte(Joueur j1, Joueur j2){
+
   srand (time(NULL));
 
   vector<unsigned short> familleEnMain;
@@ -107,14 +129,13 @@ bool Partie::demanderCarte(Joueur j1, Joueur j2){
     }
   }
 
-  int randomCarte = rand() % carteADemander.size();
+  size_t randomCarte = rand() % carteADemander.size() - 1;
 
-
-  cout << j1.getNom() << " demande à " << j2.getNom() << "la carte ";
+  cout << j1.getNom() << " demande à " << j2.getNom() << " la carte ";
   carteADemander[randomCarte].afficherCarte();
   cout << endl;
 
-  for(int i = 0; i < cartesEnMainJ2.size(); ++i) {
+  for(size_t i = 0; i < cartesEnMainJ2.size(); ++i) {
   	if(cartesEnMainJ2[i] == carteADemander[randomCarte]) {
   		j2.donnerCarte(i);
   		j1.recevoirCarte(carteADemander[randomCarte]);
@@ -138,8 +159,21 @@ void Partie::distribuerCartes(){
     for(size_t i = 0; i < CARTES_PAR_JOUEURS*NOMBRE_JOUEURS; i++) {
         joueurs.at(i%NOMBRE_JOUEURS).cartesEnMain.push_back(pioche.at(i));
     }
-
 }
+
+bool Partie::detecterFinDePartie() {
+	size_t cartesEnMain;
+
+	for(Joueur joueur : joueurs) {
+		cartesEnMain += joueur.getCartesEnMain().size();
+	}
+
+	if(cartesEnMain == 0 && pioche.size() == 0){
+		return true;
+	}
+	return false;
+}
+
 
 vector<Joueur> Partie::getJoueurs() {
 	return joueurs;

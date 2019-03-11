@@ -23,7 +23,8 @@ class Partie{
 public:
     Partie(); //Florian
     void initPioche();
-    bool tour(); //Florian
+    void afficherDebutTour();
+    void tour(); //Florian
     void initialiserPartie(); //Florian
     void distribuerCartes(); //Farouk bonjour
     bool detecterFinDePartie(); //Farouk
