@@ -13,6 +13,10 @@
 #ifndef PARTIE
 #define PARTIE
 #include "joueur.h"
+#include <algorithm>
+#include <random>
+#include <vector>
+#include <chrono>
 
 class Partie{
     friend class Joueur;
@@ -22,6 +26,8 @@ public:
     void initialiserPartie(); //Florian
     void distribuerCartes(); //Farouk bonjour
     bool detecterFinDePartie(); //Farouk
+
+   bool demanderCarte(Joueur j1, Joueur j2);
 
     //Methode d'affichage
     void afficherPioche() const ;
