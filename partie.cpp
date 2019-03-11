@@ -25,6 +25,10 @@ Partie::Partie() {
 			pioche.push_back(Carte(i, j));
 		}
 	}
+    //On crée les 4 joueurs
+    for(unsigned j = 0 ; j < NOMBRE_JOUEURS ; j++){
+        joueurs.push_back(Joueur(NOMS_JOUEURS[j]));
+    }
 }
 
 void Partie::tour() {
@@ -62,7 +66,9 @@ void Partie::afficherCartesJoueurs() const {
         cout << " [";
         joueur.afficherFamillesSurTable();
         cout << "]";
+        cout << endl;
     }
+
 }
 
 bool Partie::demanderCarte(Joueur j1, Joueur j2){
@@ -70,7 +76,7 @@ bool Partie::demanderCarte(Joueur j1, Joueur j2){
 
   vector<unsigned short> familleEnMain;
   vector<Carte> cartesEnMainJ1 = j1.getCartesEnMain();
-  vector<Carte> cartesEnMainJ2 = j2.getCartesEnMain();  
+  vector<Carte> cartesEnMainJ2 = j2.getCartesEnMain();
   vector<Carte> carteADemander;
 
   for(Carte carte : cartesEnMainJ1) {
@@ -96,12 +102,12 @@ bool Partie::demanderCarte(Joueur j1, Joueur j2){
 
 void Partie::distribuerCartes(){
     // on rajoute un élément à la fin du vecteur pour que "shuffle"
-    pioche.push_back(Carte(0,'F'));
+    //pioche.push_back(Carte(0,'X'));
     unsigned seed = chrono::system_clock::now().time_since_epoch().count();
     // on mélange les cartes
     shuffle (pioche.begin(), pioche.end(), default_random_engine(seed));
-    //on enléve le dérnier élément
-    pioche.pop_back();
+    //on enléve le dernier élément
+    //pioche.pop_back();
     for(size_t i = 0; i < CARTES_PAR_JOUEURS*NOMBRE_JOUEURS; i++) {
         joueurs.at(i%NOMBRE_JOUEURS).cartesEnMain.push_back(pioche.at(i));
     }
