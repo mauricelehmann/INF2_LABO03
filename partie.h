@@ -29,7 +29,7 @@ public:
     void distribuerCartes(); //Farouk bonjour
     bool detecterFinDePartie(); //Farouk
 
-   bool demanderCarte(Joueur j1, Joueur j2);
+   bool demanderCarte(Joueur& j1, Joueur& j2);
 
     //Methode d'affichage
     void afficherPioche() const ;

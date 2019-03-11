@@ -111,7 +111,7 @@ void Partie::afficherCartesJoueurs() const {
 
 }
 
-bool Partie::demanderCarte(Joueur j1, Joueur j2){
+bool Partie::demanderCarte(Joueur& j1, Joueur& j2){
 
   srand (time(NULL));
 
