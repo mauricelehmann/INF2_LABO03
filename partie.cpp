@@ -11,7 +11,7 @@
  -----------------------------------------------------------------------------------
 */
 #include <iostream>
-
+#include <cstdlib>
 #include "partie.h"
 #include "joueur.h"
 #include "constantesGlobales.h"
@@ -29,11 +29,18 @@ Partie::Partie() {
 }
 
 void Partie::tour() {
+	srand(time(NULL));
+	int j;
+	bool found;
 	for(int i = 0; i < NOMBRE_JOUEURS; ++i) {
-		do{
-			joueurs[i].demanderCarte();
+		while(j == i) {
+			j = rand() % NOMBRE_JOUEURS - 1;
 		}
-		while(joueurs[i].demanderCarte());
+
+		do{
+			found = demanderCarte(joueurs[i], joueurs[j]);
+		}
+		while(found);
 
 		if(pioche.size() != 0) {
 			joueurs[i].piocher(pioche);
@@ -58,4 +65,33 @@ void Partie::afficherCartesJoueurs() const {
         joueur.afficherFamillesSurTable();
         cout << "]";
     }
+}
+
+bool Partie::demanderCarte(Joueur j1, Joueur j2){
+  srand (time(NULL));
+
+  vector<unsigned short> familleEnMain;
+  vector<Carte> cartesEnMainJ1 = j1.getCartesEnMain();
+  vector<Carte> cartesEnMainJ2 = j2.getCartesEnMain();  
+  vector<Carte> carteADemander;
+
+  for(Carte carte : cartesEnMainJ1) {
+    for(char i = 'A'; i <= CARTES_PAR_FAMILLES; ++i) {
+      Carte carteTemp(carte.getFamille(), i);
+
+      if(find(cartesEnMainJ1.begin(), cartesEnMainJ1.end(), carteTemp) == cartesEnMainJ1.end())
+        carteADemander.push_back(carteTemp);
+    }
+  }
+
+  int randomCarte = rand() % carteADemander.size();
+
+  for(int i = 0; i < cartesEnMainJ2.size(); ++i) {
+  	if(cartesEnMainJ2[i] == carteADemander[randomCarte]) {
+  		j2.donnerCarte(i);
+  		j1.recevoirCarte(carteADemander[randomCarte]);
+  		return true;
+  	}
+  }
+  return false;
 }

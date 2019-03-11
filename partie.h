@@ -19,9 +19,11 @@ class Partie{
 public:
     Partie(); //Florian
     void tour(); //Florian
-    void initialiserPartie(); //Florian
+    void initialiserPartie();
     void distribuerCartes(); //Farouk
     bool detecterFinDePartie(); //Farouk
+
+   bool demanderCarte(Joueur j1, Joueur j2);
 
     //Methode d'affichage
     void afficherPioche() const ;
