@@ -20,15 +20,33 @@ using namespace std;
 
 Partie::Partie() {
     //On crée & initialise la pioche
-	for(unsigned i = 1; i <= NOMBRE_FAMILLES; ++i ) {
-		for(int j = 'A'; j <= CARTES_PAR_FAMILLES; ++j ){
-			pioche.push_back(Carte(i, j));
-		}
-	}
+	initPioche();
     //On crée les 4 joueurs
     for(unsigned j = 0 ; j < NOMBRE_JOUEURS ; j++){
         joueurs.push_back(Joueur(NOMS_JOUEURS[j]));
     }
+}
+void Partie::initialiserPartie(){
+
+    //On enleve les cartes des mains des joueurs
+    for(Joueur& j : joueurs ){
+        j.cartesEnMain.clear();
+        j.famillesSurTable.clear();
+        j.afficherMain();
+    }
+    //On enleve les cartes sur la table
+    initPioche();
+}
+
+void Partie::initPioche(){
+    if(!pioche.empty()){
+        pioche.clear();
+    }
+    for(unsigned i = 1; i <= NOMBRE_FAMILLES; ++i ) {
+		for(int j = 'A'; j <= CARTES_PAR_FAMILLES; ++j ){
+			pioche.push_back(Carte(i, j));
+		}
+	}
 }
 
 bool Partie::tour() {
@@ -49,7 +67,7 @@ bool Partie::tour() {
 		}
 
 		joueurs[i].detecterFamille();
-	}	
+	}
 }
 
 void Partie::afficherPioche() const {
@@ -57,7 +75,9 @@ void Partie::afficherPioche() const {
     for(Carte carte : pioche ){
         carte.afficherCarte();
     }
+    cout << endl;
 }
+
 void Partie::afficherCartesJoueurs() const {
     for(Joueur joueur : joueurs){
         cout << joueur.getNom() << " : ";

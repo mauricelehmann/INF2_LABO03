@@ -22,6 +22,7 @@ class Partie{
     friend class Joueur;
 public:
     Partie(); //Florian
+    void initPioche();
     bool tour(); //Florian
     void initialiserPartie(); //Florian
     void distribuerCartes(); //Farouk bonjour
