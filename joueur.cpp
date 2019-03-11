@@ -26,6 +26,11 @@ Joueur::Joueur(const string& nom):nom(nom){
 }
 
 void Joueur::piocher(vector<Carte>& pioche){
+
+  cout << getNom() << " prend une carte dans la pioche (";
+  pioche.back().afficherCarte();
+  cout <<")" << endl;
+
    //On met la dernière carte de la pioche dans la main du joueur
    cartesEnMain.push_back(pioche.at(pioche.size() - 1));
    //On enlève la carte de la pioche
