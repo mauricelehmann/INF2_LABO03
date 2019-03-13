@@ -71,17 +71,11 @@ bool Partie::tour() {
 	afficherCartesJoueurs();
 	afficherPioche();
 
-/*
-  for(int i = 0; i < NOMBRE_JOUEURS; ++i) {
-    if(joueurs[i].getCartesEnMain().size() == 0)
-      joueurs.erase(joueurs.begin() + i);
-  }
-*/
 	 for(int i = 0; i < NOMBRE_JOUEURS; ++i) {
 
     while(joueurs[i].getCartesEnMain().size() == 0){
       ++i;
-      if(i == NOMBRE_JOUEURS) {
+      if(i == NOMBRE_JOUEURS && pioche.size() == 0) {
         return false;
       }
     }
@@ -91,20 +85,18 @@ bool Partie::tour() {
     }while( joueurs[j].getCartesEnMain().size() == 0 && i ==j );
 
     do{
-      if(joueurs[i].getCartesEnMain().size() != 0 && joueurs[j].getCartesEnMain().size()) {
+      if(joueurs[i].getCartesEnMain().size() != 0 && joueurs[j].getCartesEnMain().size() != 0) {
         found = demanderCarte(joueurs[i], joueurs[j]);
+        joueurs[i].detecterFamille();
       } else {
         found = false;
       }
-
-    }
-    while(found);
+    }while(found);
 
     if(pioche.size() != 0) {
       joueurs[i].piocher(pioche);
     }
 
-    joueurs[i].detecterFamille();
   }
 }
 

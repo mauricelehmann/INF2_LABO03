@@ -40,10 +40,11 @@ int main(){
 		counter++;
 	}
 */
-	do {
+	while(p1.tour()) {
 		cout << "***Tour " << counter << "***" << endl;
-		p1.tour();
 		counter++;
-	}while(!(p1.detecterFinDePartie()));
+	}
+	p1.afficherCartesJoueurs();
+
     return EXIT_SUCCESS;
 }
