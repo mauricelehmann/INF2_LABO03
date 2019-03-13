@@ -24,7 +24,7 @@ public:
     Partie(); //Florian
     void initPioche();
     void afficherDebutTour();
-    void tour(); //Florian
+    bool tour(); //Florian
     void initialiserPartie(); //Florian
     void distribuerCartes(); //Farouk bonjour
     bool detecterFinDePartie(); //Farouk

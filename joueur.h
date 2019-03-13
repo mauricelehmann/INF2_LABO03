@@ -55,7 +55,7 @@ public:
 
    void donnerCarte(int carte);
 
-   void recevoirCarte(Carte carte);
+   void recevoirCarte(Carte& carte);
    std::string getNom();
 
    std::vector<Carte> getCartesEnMain();

@@ -12,6 +12,7 @@
 */
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
 #include "partie.h"
 #include "joueur.h"
 #include "constantesGlobales.h"
@@ -19,6 +20,7 @@
 using namespace std;
 
 Partie::Partie() {
+	initPioche();
     //On crée les 4 joueurs
     for(unsigned j = 0 ; j < NOMBRE_JOUEURS ; j++){
         joueurs.push_back(Joueur(NOMS_JOUEURS[j]));
@@ -59,42 +61,58 @@ void Partie::afficherDebutTour() {
 	cout << endl;
 }
 
-void Partie::tour() {
+bool Partie::tour() {
+  
+  srand(time(NULL));
 
-	srand(time(nullptr));
-	int test = NOMBRE_JOUEURS - 1;
-	int j = rand() % test;
+	int j = 0;
 	bool found;
-	vector<Joueur> joueurDisponible;
-	afficherDebutTour();
 
-	for(int i = 0; i < NOMBRE_JOUEURS; ++i) {
-		if(joueurs[i].getCartesEnMain().size() != 0) {
-			joueurDisponible.push_back(joueurs[i]);
-		}
+	afficherCartesJoueurs();
+	afficherPioche();
 
-		while(j == i) {
-			j = rand() % test;
-		}
+/*
+  for(int i = 0; i < NOMBRE_JOUEURS; ++i) {
+    if(joueurs[i].getCartesEnMain().size() == 0)
+      joueurs.erase(joueurs.begin() + i);
+  }
+*/
+	 for(int i = 0; i < NOMBRE_JOUEURS; ++i) {
 
-		do{
-			found = demanderCarte(joueurs[i], joueurs[j]);
+    while(joueurs[i].getCartesEnMain().size() == 0){
+      ++i;
+      if(i == NOMBRE_JOUEURS) {
+        return false;
+      }
+    }
 
-		}
-		while(found);
+    do{
+        j = (rand() % NOMBRE_JOUEURS);
+    }while( joueurs[j].getCartesEnMain().size() == 0 && i ==j );
 
-		if(pioche.size() != 0) {
-			joueurs[i].piocher(pioche);
-		}
+    do{
+      if(joueurs[i].getCartesEnMain().size() != 0 && joueurs[j].getCartesEnMain().size()) {
+        found = demanderCarte(joueurs[i], joueurs[j]);
+      } else {
+        found = false;
+      }
 
-		joueurs[i].detecterFamille();
-	}
+    }
+    while(found);
+
+    if(pioche.size() != 0) {
+      joueurs[i].piocher(pioche);
+    }
+
+    joueurs[i].detecterFamille();
+  }
 }
 
 void Partie::afficherPioche() const {
     cout << "Pioche: ";
     for(Carte carte : pioche ){
         carte.afficherCarte();
+        cout << " ";
     }
     cout << endl;
 }
@@ -113,8 +131,6 @@ void Partie::afficherCartesJoueurs() const {
 
 bool Partie::demanderCarte(Joueur& j1, Joueur& j2){
 
-  srand (time(NULL));
-
   vector<unsigned short> familleEnMain;
   vector<Carte> cartesEnMainJ1 = j1.getCartesEnMain();
   vector<Carte> cartesEnMainJ2 = j2.getCartesEnMain();
@@ -129,7 +145,7 @@ bool Partie::demanderCarte(Joueur& j1, Joueur& j2){
     }
   }
 
-  size_t randomCarte = rand() % carteADemander.size() - 1;
+  size_t randomCarte = (rand() % carteADemander.size());
 
   cout << j1.getNom() << " demande à " << j2.getNom() << " la carte ";
   carteADemander[randomCarte].afficherCarte();
@@ -137,8 +153,8 @@ bool Partie::demanderCarte(Joueur& j1, Joueur& j2){
 
   for(size_t i = 0; i < cartesEnMainJ2.size(); ++i) {
   	if(cartesEnMainJ2[i] == carteADemander[randomCarte]) {
+  		j1.ajouterCarte(carteADemander[randomCarte]);
   		j2.donnerCarte(i);
-  		j1.recevoirCarte(carteADemander[randomCarte]);
   		cout << "et " << j2.getNom() << " donne la carte à " << j1.getNom() << endl;
   		return true;
   	}
@@ -149,30 +165,34 @@ bool Partie::demanderCarte(Joueur& j1, Joueur& j2){
 }
 
 void Partie::distribuerCartes(){
-    // on rajoute un élément à la fin du vecteur pour que "shuffle"
-    //pioche.push_back(Carte(0,'X'));
-    unsigned seed = chrono::system_clock::now().time_since_epoch().count();
-    // on mélange les cartes
-    shuffle (pioche.begin(), pioche.end(), default_random_engine(seed));
-    //on enléve le dernier élément
-    //pioche.pop_back();
+
+    //on melange la pioche
+    random_shuffle(pioche.begin(), pioche.end());
+
+    //test si il y a assez de carte par rapports aux nombre de joueurs et de carte par main
+    if(CARTES_PAR_JOUEURS*NOMBRE_JOUEURS > NOMBRE_FAMILLES * CARTES_PAR_FAMILLES) {
+    	cout << "Trop de joueurs et de carte par joueurs par rapport aux carte" << endl;
+    	return;
+    }
+
+    //On distribue les cartes
     for(size_t i = 0; i < CARTES_PAR_JOUEURS*NOMBRE_JOUEURS; i++) {
-        joueurs.at(i%NOMBRE_JOUEURS).cartesEnMain.push_back(pioche.at(i));
+        joueurs.at(i%NOMBRE_JOUEURS).cartesEnMain.push_back(pioche.back());
+    	pioche.pop_back();
     }
 }
 
 bool Partie::detecterFinDePartie() {
-	size_t cartesEnMain;
+  for(size_t i = 0; i < NOMBRE_JOUEURS; i++){
+    if(joueurs.at(i).cartesEnMain.size())
+    return false;
+   }
+   if(pioche.size())
+     return false;
 
-	for(Joueur joueur : joueurs) {
-		cartesEnMain += joueur.getCartesEnMain().size();
-	}
-
-	if(cartesEnMain == 0 && pioche.size() == 0){
-		return true;
-	}
-	return false;
+  return true;
 }
+
 
 
 vector<Joueur> Partie::getJoueurs() {

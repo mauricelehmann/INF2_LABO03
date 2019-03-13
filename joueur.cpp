@@ -16,6 +16,7 @@
 #include <string>
 #include <cstdlib>
 #include "joueur.h"
+
 using namespace std;
 
 Joueur::Joueur() {}
@@ -72,15 +73,14 @@ void Joueur::detecterFamille(){
     }
 }
 
-
 void Joueur::ajouterCarte(const Carte& carte){
    cartesEnMain.push_back(carte);
 }
 
-
 void Joueur::afficherMain() const{
    for(Carte carte : cartesEnMain ){
       carte.afficherCarte();
+      std::cout << " ";
    }
 }
 
@@ -88,6 +88,7 @@ void Joueur::afficherMain() const{
 void Joueur::afficherFamillesSurTable() const{
     for(Carte carte : famillesSurTable ){
        carte.afficherCarte();
+       cout << " ";
     }
 }
 
@@ -103,7 +104,7 @@ void Joueur::donnerCarte(int carte) {
   cartesEnMain.erase(cartesEnMain.begin() + carte);
 }
 
-void Joueur::recevoirCarte(Carte carte) {
+void Joueur::recevoirCarte(Carte& carte) {
   cartesEnMain.push_back(carte);
 }
 

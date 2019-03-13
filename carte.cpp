@@ -24,7 +24,7 @@ char Carte::getMembre(){
     return membre;
 }
 void Carte::afficherCarte(){
-    cout << famille << membre << " ";
+    cout << famille << membre;
 }
 
 bool Carte::operator == (const Carte& rhs) {

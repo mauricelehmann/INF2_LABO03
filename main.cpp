@@ -33,11 +33,17 @@ int main(){
 	cout << "Début de la partie de 7 familles" << endl;
 
 	p1.initialiserPartie();
-			p1.tour();
-
-	do {
+/*
+	for(int i = 0; i < 20; ++i) {
+		cout << "***Tour " << counter << "***" << endl;
+		p1.tour();
 		counter++;
-	}while(p1.detecterFinDePartie());
-
+	}
+*/
+	do {
+		cout << "***Tour " << counter << "***" << endl;
+		p1.tour();
+		counter++;
+	}while(!(p1.detecterFinDePartie()));
     return EXIT_SUCCESS;
 }
