@@ -5,24 +5,27 @@
  Auteur(s)   : Maurice Lehmann,Ahmed Farouk Ferchichi, Florian Schaufelberger
  Date        : 01.03.2019
 
- But         : TODO
+ But         : Déclaration de la classe Joueur
 
  Compilateur : MinGW-g++
  -----------------------------------------------------------------------------------
 */
 #ifndef JOUEUR
 #define JOUEUR
+
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <iostream>
+#include <cstdlib>
+
 #include "constantesGlobales.h"
 #include "carte.h"
 
 class Joueur{
+    //La classe Partie à besoin d'avoir un accès attribut privé du joueur
     friend class Partie;
 public:
-
-   Joueur();
    /**
     * Constructeur de class Joueur
     * @param nom nom du joueur
@@ -49,16 +52,30 @@ public:
     */
    void afficherMain() const;
    /**
-    * Affiche les familles sur table
+    * Affiche les familles du joueur sur table
     */
    void afficherFamillesSurTable() const;
-
-   void donnerCarte(int carte);
-
+   /**
+    * Enlève une carte de la main du joueur
+    * @param carte Carte à enlever
+    */
+   void donnerCarte(const int& carte);
+   /**
+    * Ajoute une carte dans la main du joueur
+    * @param carte Carte à ajouter
+    */
    void recevoirCarte(Carte& carte);
-   std::string getNom();
+   /**
+    * Retourne vecteur de cartes en main du joueur
+    * @return vector<Carte> cartes en main
+    */
+   std::vector<Carte> getCartesEnMain() const;
+   /**
+    * Retourne le nom du joueur
+    * @return string, nom du joueur
+    */
+   std::string getNom() const;
 
-   std::vector<Carte> getCartesEnMain();
 private:
    std::string nom;
    std::vector<Carte> cartesEnMain;

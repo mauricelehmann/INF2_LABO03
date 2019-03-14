@@ -1,3 +1,15 @@
+/*
+ -----------------------------------------------------------------------------------
+ Laboratoire : 03
+ Fichier     : constantesGlobales.h
+ Auteur(s)   : Maurice Lehmann,Ahmed Farouk Ferchichi, Florian Schaufelberger
+ Date        : 01.03.2019
+
+ But         : Définition des constantes globales du jeu des 7 familles
+
+ Compilateur : MinGW-g++
+ -----------------------------------------------------------------------------------
+*/
 #ifndef CONSTANTES_GLOBALES_H
 #define CONSTANTES_GLOBALES_H
 

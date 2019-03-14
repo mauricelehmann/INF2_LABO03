@@ -5,27 +5,28 @@
  Auteur(s)   : Maurice Lehmann,Ahmed Farouk Ferchichi, Florian Schaufelberger
  Date        : 01.03.2019
 
- But         : TODO
+ But         : Définitions des méthodes de la classe Joueur
 
  Compilateur : MinGW-g++
  -----------------------------------------------------------------------------------
 */
 
-#include <iostream>
-#include <vector>
-#include <string>
-#include <cstdlib>
 #include "joueur.h"
 
 using namespace std;
 
-Joueur::Joueur() {}
-
+/**
+ * Constructeur de class Joueur
+ * @param nom nom du joueur
+ */
 Joueur::Joueur(const string& nom):nom(nom){
     //On initialise les points à zéro
     points = 0;
 }
-
+/**
+ * Ajoute une carte dans la main du joueur, venant de la pioche
+ * @param pioche vecteur de carte
+ */
 void Joueur::piocher(vector<Carte>& pioche){
 
   cout << getNom() << " prend une carte dans la pioche (";
@@ -37,7 +38,10 @@ void Joueur::piocher(vector<Carte>& pioche){
    //On enlève la carte de la pioche
    pioche.pop_back();
 }
-
+/**
+ * Detecte si le joueur à une famille complète dans la main
+ * Si oui, on transfère les cartes de la main à la table
+ */
 void Joueur::detecterFamille(){
     //On cherche les différentes familles dans la main
     vector<unsigned short> famillesDansLaMain;
@@ -47,7 +51,6 @@ void Joueur::detecterFamille(){
             famillesDansLaMain.push_back(carte.getFamille());
         }
     }
-    //TODO : Utiliser count_if() ? Essayé, par réussi...
     //On connais maintenant les familles à chercher
     unsigned short compteur = 0;
     for(unsigned short famille : famillesDansLaMain ){
@@ -57,7 +60,6 @@ void Joueur::detecterFamille(){
                 compteur++;
             }
         }
-        //TODO CHANGER CETTE CONSTANTE CHAR EN INT!
         //Si on a tous les membres de la famille
         if(compteur == (CARTES_PAR_FAMILLES - 'A' + 1) ){
             //On pose cette famille sur la table
@@ -72,41 +74,56 @@ void Joueur::detecterFamille(){
         compteur = 0;
     }
 }
-
+/**
+ * Ajoute une carte dans la main du joueur
+ * @param carte Carte à ajouter
+ */
 void Joueur::ajouterCarte(const Carte& carte){
    cartesEnMain.push_back(carte);
 }
-
+/**
+ * Affiche la main du joueur
+ */
 void Joueur::afficherMain() const{
    for(Carte carte : cartesEnMain ){
       carte.afficherCarte();
       std::cout << " ";
    }
 }
-
-
+/**
+ * Affiche les familles du joueur sur table
+ */
 void Joueur::afficherFamillesSurTable() const{
     for(Carte carte : famillesSurTable ){
        carte.afficherCarte();
        cout << " ";
     }
 }
-
-string Joueur::getNom() {
-  return nom;
+/**
+ * Enlève une carte de la main du joueur
+ * @param carte Carte à enlever
+ */
+void Joueur::donnerCarte(const int& carte) {
+    cartesEnMain.erase(cartesEnMain.begin() + carte);
 }
-
-vector<Carte> Joueur::getCartesEnMain() {
-  return cartesEnMain;
-}
-
-void Joueur::donnerCarte(int carte) {
-  cartesEnMain.erase(cartesEnMain.begin() + carte);
-}
-
+/**
+ * Ajoute une carte dans la main du joueur
+ * @param carte Carte à ajouter
+ */
 void Joueur::recevoirCarte(Carte& carte) {
   cartesEnMain.push_back(carte);
 }
-
-
-
+/**
+ * Retourne vecteur de cartes en main du joueur
+ * @return vector<Carte> cartes en main
+ */
+vector<Carte> Joueur::getCartesEnMain() const {
+  return cartesEnMain;
+}
+/**
+ * Retourne le nom du joueur
+ * @return string, nom du joueur
+ */
+string Joueur::getNom() const {
+  return nom;
+}
