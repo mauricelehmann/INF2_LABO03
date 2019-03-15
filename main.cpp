@@ -23,7 +23,7 @@ int main(){
 
 
     Partie p1 = Partie();
-    size_t nbPartie = 1;
+    size_t nbPartie = 100;
     //Run sur 100 parties :
     for (int i = 0; i < nbPartie ; i++) {
 
@@ -44,7 +44,7 @@ int main(){
 
         cout << "\nLa partie est finie!" << "\nNombre de tours: " << nbTours << endl;
     }
-    p1.afficherPointsJoueurs();
+    p1.afficherPointsJoueurs(nbPartie);
 
     return EXIT_SUCCESS;
 }

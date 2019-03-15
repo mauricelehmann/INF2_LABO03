@@ -129,5 +129,6 @@ string Joueur::getNom() const {
 }
 
 void Joueur::incrementerPoints(){
-   points += (famillesSurTable.size() / NB_CARTES_PAR_FAMILLES );
+  // on rajoute +1 car NB_CARTES_PAR_FAMILLES va de 0 à n
+   points += (famillesSurTable.size() / (NB_CARTES_PAR_FAMILLES + 1) );
 }

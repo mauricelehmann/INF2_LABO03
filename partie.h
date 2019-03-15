@@ -86,7 +86,7 @@ public:
    /**
     * Affiche le nombre de points de chaques joueurs
     */
-   void afficherPointsJoueurs();
+   void afficherPointsJoueurs(int nbPartie);
 
 private:
     std::vector<Carte> pioche;

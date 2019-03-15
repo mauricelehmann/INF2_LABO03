@@ -11,6 +11,7 @@
  -----------------------------------------------------------------------------------
 */
 #include <iostream>
+#include <iomanip>
 #include <cstdlib>
 #include <ctime>
 #include "partie.h"
@@ -224,8 +225,9 @@ void Partie::calculerPointsJoueurs(){
       joueurs.at(j).incrementerPoints();
    }
 }
-void Partie::afficherPointsJoueurs(){
+void Partie::afficherPointsJoueurs(int nbPartie){
+    //on prends les points du joueurs qu'on divise par le nombre de famille et le nombre de partie et on fait * 100 pour avoir le pourcentages des points
    for(size_t j = 0 ; j < NOMBRE_JOUEURS ;  j++ ){
-      cout << joueurs.at(j).nom << " a " << joueurs.at(j).points << " points\n";
+      cout << setprecision(4) <<  joueurs.at(j).nom << " a " << joueurs.at(j).points / (double)NOMBRE_FAMILLES * 100  / nbPartie << " % des points\n";
    }
 }
