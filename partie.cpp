@@ -74,23 +74,17 @@ void Partie::afficherDebutTour() {
 }
 /**
  * Effectue toutes les actions entre joueurs pendant un tour
- * @return false si aucun joueurs ne peut jouer et que la pioche est vide
  */
-bool Partie::tour() {
+void Partie::tour() {
 
-    srand(time(NULL));
-	size_t joueurAdverse = 0;
-	bool carteTrouvee;
+   size_t joueurAdverse = 0;
+   bool carteTrouvee;
+   
+   //Affichage du jeu actuel
+   afficherCartesJoueurs();
+   afficherPioche();
 
-	afficherCartesJoueurs();
-	afficherPioche();
-
-	for(int joueur = 0; joueur < NOMBRE_JOUEURS; joueur++) {
-        //On controle que la partie ne doive pas s'arrêter
-        //càd si encore des joueurs on des cartes et si la pioche n'est pas vide
-        if(detecterFinDePartie()){
-            return false;
-        }
+   for(size_t joueur = 0; joueur < NOMBRE_JOUEURS; joueur++) {
         //On cherche un joueur adverse
         //Il doit avoir des cartes en main et ne pas être le joueur lui-même
         do{
@@ -179,7 +173,7 @@ bool Partie::demanderCarte(Joueur& j1, Joueur& j2){
     size_t randomCarte = (rand() % carteADemander.size());
 
     //On affiche la transaction
-    cout << j1.getNom() << " demande à " << j2.getNom() << " la carte ";
+    cout << j1.getNom() << " demande a " << j2.getNom() << " la carte ";
     carteADemander[randomCarte].afficherCarte();
     cout << endl;
 
@@ -188,7 +182,7 @@ bool Partie::demanderCarte(Joueur& j1, Joueur& j2){
     	if(cartesEnMainJ2[i] == carteADemander[randomCarte]) {
     		j1.ajouterCarte(carteADemander[randomCarte]);
     		j2.donnerCarte(i);
-    		cout << "et " << j2.getNom() << " donne la carte à " << j1.getNom() << endl;
+    		cout << "et " << j2.getNom() << " donne la carte a " << j1.getNom() << endl;
     		return true;
     	}
     }
@@ -223,4 +217,15 @@ void Partie::distribuerCartes(){
  */
 vector<Joueur> Partie::getJoueurs() {
 	return joueurs;
+}
+
+void Partie::calculerPointsJoueurs(){
+   for(size_t j = 0 ; j < NOMBRE_JOUEURS ;  j++ ){
+      joueurs.at(j).incrementerPoints();
+   }
+}
+void Partie::afficherPointsJoueurs(){
+   for(size_t j = 0 ; j < NOMBRE_JOUEURS ;  j++ ){
+      cout << joueurs.at(j).nom << " a " << joueurs.at(j).points << " points\n";
+   }
 }

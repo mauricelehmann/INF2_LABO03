@@ -75,7 +75,10 @@ public:
     * @return string, nom du joueur
     */
    std::string getNom() const;
-
+   /**
+    * Incrémente le nombre total de points du joueur
+    */
+   void incrementerPoints();
 private:
    std::string nom;
    std::vector<Carte> cartesEnMain;

@@ -18,6 +18,11 @@
 #include <vector>
 #include <chrono>
 
+/**
+ * Classe Partie
+ * Contient un vecteur d'objet "Carte" , de "Joueur"
+ * Gère le déroulement d'une partie
+ */
 class Partie{
 public:
     /**
@@ -41,9 +46,8 @@ public:
     void afficherDebutTour();
     /**
      * Effectue toutes les actions entre joueurs pendant un tour
-     * @return false si aucun joueurs ne peut jouer et que la pioche est vide
      */
-    bool tour();
+    void tour();
     /**
      * Affiche le contenu de la pioche
      */
@@ -74,6 +78,15 @@ public:
      * @return vecteur<Joueur>
      */
     std::vector<Joueur> getJoueurs();
+    /**
+    * Calcule le nombre de points de chaques joueurs
+    * et incrémente leurs attributs
+    */
+   void calculerPointsJoueurs();
+   /**
+    * Affiche le nombre de points de chaques joueurs
+    */
+   void afficherPointsJoueurs();
 
 private:
     std::vector<Carte> pioche;

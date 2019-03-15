@@ -22,23 +22,33 @@ using namespace std;
 int main(){
 
 
-	Partie p1 = Partie();
-	unsigned counter = 1;
-	cout << "Début de la partie de 7 familles" << endl;
-
+   Partie p1 = Partie();     
+   //Run sur 100 parties :
+   for (int i = 0; i < 50; i++) {
+ 
+      srand(time(0));
+      unsigned nbTours = 1;
+      
+	cout << "Debut de la partie de 7 familles" << endl;
 	p1.initialiserPartie();
-/*
-	for(int i = 0; i < 20; ++i) {
-		cout << "***Tour " << counter << "***" << endl;
-		p1.tour();
-		counter++;
+	while(true) {
+            cout << "***Tour " << nbTours << "***" << endl;
+            p1.tour();
+            nbTours++;
+            //On controle que la partie ne doive pas s'arrêter
+            //càd si encore des joueurs on des cartes et si la pioche n'est pas vide
+            if(p1.detecterFinDePartie()){
+                p1.afficherCartesJoueurs();
+                p1.calculerPointsJoueurs();
+                break;
+            }
 	}
-*/
-	while(p1.tour()) {
-		cout << "***Tour " << counter << "***" << endl;
-		counter++;
-	}
-	p1.afficherCartesJoueurs();
+        cout << "\nLa partie est finie!" << "\nNombre de tours: " << nbTours << endl;
+        
+   }
+        
+        p1.afficherPointsJoueurs();
 
+        
     return EXIT_SUCCESS;
 }

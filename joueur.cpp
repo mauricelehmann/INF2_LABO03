@@ -127,3 +127,7 @@ vector<Carte> Joueur::getCartesEnMain() const {
 string Joueur::getNom() const {
   return nom;
 }
+
+void Joueur::incrementerPoints(){
+   points += (famillesSurTable.size() / CARTE_PAR );
+}
