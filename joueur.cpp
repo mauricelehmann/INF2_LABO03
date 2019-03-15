@@ -61,7 +61,7 @@ void Joueur::detecterFamille(){
             }
         }
         //Si on a tous les membres de la famille
-        if(compteur == (CARTES_PAR_FAMILLES - 'A' + 1) ){
+        if(compteur == (NB_CARTES_PAR_FAMILLES + 1) ){
             //On pose cette famille sur la table
             for(vector<Carte>::iterator itCarte = cartesEnMain.begin() ; itCarte != cartesEnMain.end() ; itCarte++){
                 if((*itCarte).getFamille() == famille){
@@ -129,5 +129,5 @@ string Joueur::getNom() const {
 }
 
 void Joueur::incrementerPoints(){
-   points += (famillesSurTable.size() / CARTE_PAR );
+   points += (famillesSurTable.size() / NB_CARTES_PAR_FAMILLES );
 }

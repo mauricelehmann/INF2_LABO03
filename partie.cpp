@@ -79,7 +79,7 @@ void Partie::tour() {
 
    size_t joueurAdverse = 0;
    bool carteTrouvee;
-   
+
    //Affichage du jeu actuel
    afficherCartesJoueurs();
    afficherPioche();
@@ -159,7 +159,7 @@ bool Partie::demanderCarte(Joueur& j1, Joueur& j2){
     vector<Carte> cartesEnMainJ1 = j1.getCartesEnMain();
     vector<Carte> cartesEnMainJ2 = j2.getCartesEnMain();
     vector<Carte> carteADemander;
-
+    
     //On regarde cartes il est possible de demander
     for(Carte carte : cartesEnMainJ1) {
         for(char i = 'A'; i <= CARTES_PAR_FAMILLES; ++i) {
@@ -200,7 +200,7 @@ void Partie::distribuerCartes(){
     random_shuffle(pioche.begin(), pioche.end());
 
     //test si il y a assez de carte par rapports aux nombre de joueurs et de carte par main
-    if(CARTES_PAR_JOUEURS*NOMBRE_JOUEURS > NOMBRE_FAMILLES * CARTES_PAR_FAMILLES) {
+    if(CARTES_PAR_JOUEURS*NOMBRE_JOUEURS > NOMBRE_FAMILLES * NB_CARTES_PAR_FAMILLES) {
     	cout << "Trop de joueurs et de carte par joueurs par rapport aux carte" << endl;
     	return;
     }
