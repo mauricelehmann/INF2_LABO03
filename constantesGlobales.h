@@ -16,7 +16,7 @@
 #include <vector>
 #include <string>
 
-const unsigned NOMBRE_FAMILLES = 7;
+const unsigned NOMBRE_FAMILLES = 9;
 const char CARTES_PAR_FAMILLES = 'D';
 const unsigned NB_CARTES_PAR_FAMILLES = (CARTES_PAR_FAMILLES - 'A');
 const unsigned NOMBRE_JOUEURS = 5;
