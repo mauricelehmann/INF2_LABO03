@@ -23,9 +23,8 @@ int main(){
 
 
    Partie p1 = Partie();  
-   cout << NOMBRE_FAMILLES * NB_CARTES_PAR_FAMILLES << endl;
    //Run sur 100 parties :
-   for (int i = 0; i < 2; i++) {
+   for (int i = 0; i < 50 ; i++) {
  
       srand(time(0));
       unsigned nbTours = 1;

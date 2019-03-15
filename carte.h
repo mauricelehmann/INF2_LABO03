@@ -14,6 +14,11 @@
 #define CARTE
 #include <iostream>
 
+/**
+ * Class Carte , objet représentant une carte à jouer
+ * @param famille Famille de la carte
+ * @param membre  Membre de la famille
+ */
 class Carte{
 
 public:

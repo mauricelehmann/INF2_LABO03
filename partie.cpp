@@ -159,7 +159,7 @@ bool Partie::demanderCarte(Joueur& j1, Joueur& j2){
     vector<Carte> cartesEnMainJ1 = j1.getCartesEnMain();
     vector<Carte> cartesEnMainJ2 = j2.getCartesEnMain();
     vector<Carte> carteADemander;
-    
+
     //On regarde cartes il est possible de demander
     for(Carte carte : cartesEnMainJ1) {
         for(char i = 'A'; i <= CARTES_PAR_FAMILLES; ++i) {

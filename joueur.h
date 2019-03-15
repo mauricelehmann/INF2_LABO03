@@ -22,6 +22,10 @@
 #include "constantesGlobales.h"
 #include "carte.h"
 
+/**
+ * Classe Joueur
+ * @param nom Nom du joueur
+ */
 class Joueur{
     //La classe Partie à besoin d'avoir un accès attribut privé du joueur
     friend class Partie;
