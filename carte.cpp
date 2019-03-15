@@ -10,6 +10,8 @@
  Compilateur : MinGW-g++
  -----------------------------------------------------------------------------------
 */
+
+#include <iostream>
 #include "carte.h"
 using namespace std;
 

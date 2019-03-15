@@ -10,8 +10,8 @@
  Compilateur : MinGW-g++
  -----------------------------------------------------------------------------------
 */
-#ifndef PARTIE
-#define PARTIE
+#ifndef PARTIE_H
+#define PARTIE_H
 #include "joueur.h"
 #include <algorithm>
 #include <random>

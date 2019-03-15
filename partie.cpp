@@ -14,6 +14,7 @@
 #include <iomanip>
 #include <cstdlib>
 #include <ctime>
+
 #include "partie.h"
 #include "joueur.h"
 #include "constantesGlobales.h"
