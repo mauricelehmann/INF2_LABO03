@@ -32,18 +32,16 @@ int main(){
 
         cout << "Debut de la partie de 7 familles" << endl;
         p1.initialiserPartie();
-    	while(true) {
+    	while(!p1.detecterFinDePartie()) {
                 cout << "***Tour " << nbTours << "***" << endl;
                 p1.tour();
                 nbTours++;
                 //On controle que la partie ne doive pas s'arrêter
                 //càd si encore des joueurs on des cartes et si la pioche n'est pas vide
-                if(p1.detecterFinDePartie()){
-                    p1.afficherCartesJoueurs();
-                    p1.calculerPointsJoueurs();
-                    break;
-                }
+                p1.afficherCartesJoueurs();
 	    }
+        p1.calculerPointsJoueurs();
+
         cout << "\nLa partie est finie!" << "\nNombre de tours: " << nbTours << endl;
     }
     p1.afficherPointsJoueurs();
