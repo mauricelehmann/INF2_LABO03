@@ -88,6 +88,7 @@ public:
     */
    void afficherPointsJoueurs();
 
+
 private:
     std::vector<Carte> pioche;
     std::vector<Joueur> joueurs;

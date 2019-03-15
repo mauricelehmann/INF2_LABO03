@@ -34,7 +34,7 @@ public:
     * Constructeur de class Joueur
     * @param nom nom du joueur
     */
-   Joueur(const std::string& nom);
+   Joueur(const std::string& nom, const bool& estIntelligent);
    /**
     * Ajoute une carte dans la main du joueur, venant de la pioche
     * @param pioche vecteur de carte
@@ -83,10 +83,17 @@ public:
     * Incrémente le nombre total de points du joueur
     */
    void incrementerPoints();
+   /**
+    * Choisi une ou plusieurs cartes pertinente à demander à l'adversaire
+    * @return vecteur de carte a demander
+    */
+   std::vector<Carte> choisirCarteIntelligent();
+
 private:
    std::string nom;
    std::vector<Carte> cartesEnMain;
    std::vector<Carte> famillesSurTable;
    unsigned int points;
+   bool estIntelligent;
 };
 #endif //JOUEUR

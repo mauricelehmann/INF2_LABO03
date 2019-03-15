@@ -19,7 +19,7 @@ using namespace std;
  * Constructeur de class Joueur
  * @param nom nom du joueur
  */
-Joueur::Joueur(const string& nom):nom(nom){
+Joueur::Joueur(const string& nom, const bool& estIntelligent ):nom(nom),estIntelligent(estIntelligent){
     //On initialise les points à zéro
     points = 0;
 }
@@ -127,7 +127,41 @@ vector<Carte> Joueur::getCartesEnMain() const {
 string Joueur::getNom() const {
   return nom;
 }
-
+/**
+ * Incrémente le nombre du point du joueur
+ */
 void Joueur::incrementerPoints(){
-   points += (famillesSurTable.size() / NB_CARTES_PAR_FAMILLES );
+   //Le "+1" parce que NB_CARTES_PAR_FAMILLES commence de 0 à n
+   points += (famillesSurTable.size() / (NB_CARTES_PAR_FAMILLES + 1) ) ;
+}
+/**
+ * Choisi une ou plusieurs cartes pertinente à demander à l'adversaire
+ * @return vecteur de carte a demander
+ */
+vector<Carte> Joueur::choisirCarteIntelligent(){
+
+    vector<Carte> cartesADemander ;
+    vector<unsigned> compteurFamille(NOMBRE_FAMILLES,0);
+
+    //On compte le nombre de carte de la meme famille il y a
+    for( Carte carte : cartesEnMain ){
+        compteurFamille.at(carte.getFamille()) += 1;
+    }
+    //On détérmine qui est le plus grand, l'incice nous permet de retrouver la famille
+    size_t plusDeMembre = 0 ;
+    size_t plusGrandeFamille;
+    for( size_t famille = 1 ; famille <= NOMBRE_FAMILLES ; famille ++){
+        if(compteurFamille.at(famille - 1) > plusDeMembre){
+            plusDeMembre = compteurFamille.at(famille - 1);
+            plusGrandeFamille = famille - 1;
+        }
+    }
+    //On ajoute les carte à demander
+    for(char membre = 'A'; membre <= CARTES_PAR_FAMILLES; membre++) {
+        Carte carteADemander(plusGrandeFamille,membre);
+        if(find(cartesEnMain.begin(), cartesEnMain.end(), carteADemander) == cartesEnMain.end()){
+            cartesADemander.push_back(carteADemander);
+        }
+    }
+    return cartesADemander;
 }

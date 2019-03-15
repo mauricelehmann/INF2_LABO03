@@ -24,9 +24,15 @@ using namespace std;
  */
 Partie::Partie() {
 	initPioche();
-    //On crée les 4 joueurs
+
+    //On crée les n joueurs
+    bool estIntelligent = 0 ;
+    //On choisi un joueur intelligent au hazard
+    size_t joueurIntelligent = rand() % NOMBRE_JOUEURS;
     for(unsigned j = 0 ; j < NOMBRE_JOUEURS ; j++){
-        joueurs.push_back(Joueur(NOMS_JOUEURS[j]));
+        //On désigne si le joueur est inteligent
+        j == joueurIntelligent ? estIntelligent = 1 : estIntelligent = 0;
+        joueurs.push_back(Joueur(NOMS_JOUEURS[j], estIntelligent));
     }
 }
 /**
@@ -123,6 +129,7 @@ void Partie::afficherPioche() const {
  */
 void Partie::afficherCartesJoueurs() const {
     for(Joueur joueur : joueurs){
+        cout << "(" << joueur.estIntelligent << ")";
         cout << joueur.getNom() << " : ";
         joueur.afficherMain();
         cout << " [";
@@ -169,6 +176,11 @@ bool Partie::demanderCarte(Joueur& j1, Joueur& j2){
         }
     }
 
+    if(j1.estIntelligent){
+       //On affine le choix de la carte à demander
+       //Le vecteur "carteADemander" se réduit en fonction
+       //carteADemander = j1.choisirCarteIntelligent();
+    }
     //On en choisi une au hasard
     size_t randomCarte = (rand() % carteADemander.size());
 
