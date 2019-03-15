@@ -25,8 +25,9 @@ using namespace std;
  * Constructeur de la classe Partie
  */
 Partie::Partie() {
-	initPioche();
 
+    initPioche();
+    srand(time(NULL));
     //On crée les n joueurs
     bool estIntelligent = 0 ;
     //On choisi un joueur intelligent au hazard
@@ -73,7 +74,7 @@ void Partie::initPioche(){
  */
 void Partie::afficherDebutTour() {
 	for(unsigned i = 0; i  < NOMBRE_JOUEURS; ++i) {
-		cout << joueurs[i].getNom() << " : ";
+		cout << "(" << joueurs[i].estIntelligent << ")" << joueurs[i].getNom() << " : ";
 		joueurs[i].afficherMain();
 		cout << endl;
 	}
@@ -105,7 +106,6 @@ void Partie::tour() {
             }
          }
       }
-
         //Le joueur demande une carte au joueur adverse
         //Si il peut lui donner la carte, on recommence le processus
         //Sinon, le joueur pioche
