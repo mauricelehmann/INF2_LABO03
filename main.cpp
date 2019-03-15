@@ -22,11 +22,9 @@ using namespace std;
 int main(){
 
     Partie p1 = Partie();
-<<<<<<< HEAD
-    size_t nbPartie = 10;
-=======
-    size_t nbPartie = 100;
->>>>>>> 0c4d224f9ba2cb29c60ad17b906080a03ae89595
+    size_t nbPartie = 1;
+
+
     //Run sur 100 parties :
     for (int i = 0; i < nbPartie ; i++) {
 
@@ -41,17 +39,13 @@ int main(){
                 nbTours++;
                 //On controle que la partie ne doive pas s'arrêter
                 //càd si encore des joueurs on des cartes et si la pioche n'est pas vide
-                p1.afficherCartesJoueurs();
 	    }
         p1.calculerPointsJoueurs();
+        p1.afficherCartesJoueurs();
         cout << "\nLa partie est finie!" << "\nNombre de tours: " << nbTours << endl;
     }
-<<<<<<< HEAD
-    p1.afficherPointsJoueurs();
-    
-=======
+
     p1.afficherPointsJoueurs(nbPartie);
 
->>>>>>> 0c4d224f9ba2cb29c60ad17b906080a03ae89595
     return EXIT_SUCCESS;
 }

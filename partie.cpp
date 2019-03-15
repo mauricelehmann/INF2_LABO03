@@ -95,9 +95,17 @@ void Partie::tour() {
    for(size_t joueur = 0; joueur < NOMBRE_JOUEURS; joueur++) {
         //On cherche un joueur adverse
         //Il doit avoir des cartes en main et ne pas être le joueur lui-même
-        do{
+      if(joueurs.at(joueur).getCartesEnMain().size() != 0){
+         while(true){
             joueurAdverse = (rand() % NOMBRE_JOUEURS);
-        }while(joueurs[joueurAdverse].getCartesEnMain().size() == 0 && joueur == joueurAdverse );
+            if(joueurs.at(joueurAdverse).getCartesEnMain().size() != 0){
+               if(joueur != joueurAdverse){
+                  break;
+               }
+            }
+         }
+      }
+
         //Le joueur demande une carte au joueur adverse
         //Si il peut lui donner la carte, on recommence le processus
         //Sinon, le joueur pioche

@@ -131,7 +131,6 @@ string Joueur::getNom() const {
  * Incrémente le nombre du point du joueur
  */
 void Joueur::incrementerPoints(){
-<<<<<<< HEAD
    //Le "+1" parce que NB_CARTES_PAR_FAMILLES commence de 0 à n
    points += (famillesSurTable.size() / (NB_CARTES_PAR_FAMILLES + 1) ) ;
 }
@@ -166,8 +165,3 @@ vector<Carte> Joueur::choisirCarteIntelligent(){
     }
     return cartesADemander;
 }
-=======
-  // on rajoute +1 car NB_CARTES_PAR_FAMILLES va de 0 à n
-   points += (famillesSurTable.size() / (NB_CARTES_PAR_FAMILLES + 1) );
-}
->>>>>>> 0c4d224f9ba2cb29c60ad17b906080a03ae89595
