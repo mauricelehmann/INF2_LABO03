@@ -10,9 +10,8 @@
  Compilateur : MinGW-g++
  -----------------------------------------------------------------------------------
 */
-#ifndef CARTE
-#define CARTE
-#include <iostream>
+#ifndef CARTE_H
+#define CARTE_H
 
 /**
  * Class Carte , objet représentant une carte à jouer

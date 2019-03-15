@@ -10,8 +10,8 @@
  Compilateur : MinGW-g++
  -----------------------------------------------------------------------------------
 */
-#ifndef PARTIE
-#define PARTIE
+#ifndef PARTIE_H
+#define PARTIE_H
 #include "joueur.h"
 #include <algorithm>
 #include <random>
@@ -86,7 +86,7 @@ public:
    /**
     * Affiche le nombre de points de chaques joueurs
     */
-   void afficherPointsJoueurs();
+   void afficherPointsJoueurs(int nbPartie);
 
 
 private:

@@ -10,8 +10,8 @@
  Compilateur : MinGW-g++
  -----------------------------------------------------------------------------------
 */
-#ifndef JOUEUR
-#define JOUEUR
+#ifndef JOUEUR_H
+#define JOUEUR_H
 
 #include <vector>
 #include <string>
