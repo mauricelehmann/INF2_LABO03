@@ -43,8 +43,6 @@ int main(){
         p1.calculerPointsJoueurs();
         cout << "\nLa partie est finie!" << "\nNombre de tours: " << nbTours << endl;
     }
-    p1.calculerPointsJoueurs();
-
     p1.afficherPointsJoueurs(nbPartie);
 
     return EXIT_SUCCESS;
